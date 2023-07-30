@@ -14,7 +14,10 @@ function App() {
   }
 
   const check = () => {
-    if (answer === 'Cesena') setState('success')
+    setState('submitting')
+    setTimeout(() => {
+      if (answer === 'Cesena') setState('success')
+    }, 1500)
   }
 
   if (state === 'success')

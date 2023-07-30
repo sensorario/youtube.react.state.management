@@ -7,12 +7,14 @@ import './App.css'
 
 function App() {
   const [state, setState] = useState('typing')
+  const [answer, setAnswer] = useState('')
 
   const handleInput = (e) => {
-    const city = e.target.value
-    if (city === 'Cesena') {
-      setState('success')
-    }
+    setAnswer(e.target.value)
+  }
+
+  const check = () => {
+    if (answer === 'Cesena') setState('success')
   }
 
   if (state === 'success')
@@ -22,6 +24,7 @@ function App() {
     <>
       <h1>In quale citta sono nato?</h1>
       <input disabled={state === 'submitting'} onChange={handleInput} type="text" id='city' />
+      <button disabled={state === 'submitting'} onClick={check}>check</button>
     </>
   )
 }

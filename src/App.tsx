@@ -8,20 +8,12 @@ import './App.css'
 function App() {
   const [state, setState] = useState('typing')
 
-  const submitFunction = () => {
-    setState('submitting')
-    const city = document.querySelector('#city').value
-    document.querySelector('#city').value = ''
-    setTimeout(() => {
-      if (city === 'Cesena') {
-        setState('success')
-      } else {
-        setState('typing')
-      }
-    }, 1500)
+  const handleInput = (e) => {
+    const city = e.target.value
+    if (city === 'Cesena') {
+      setState('success')
+    }
   }
-
-  
 
   if (state === 'success')
     return <h1>Congratulazioni!!!</h1>
@@ -29,8 +21,7 @@ function App() {
   return (
     <>
       <h1>In quale citta sono nato?</h1>
-      <input disabled={state === 'submitting'} type="text" id='city' />
-      <button disabled={state === 'submitting'} onClick={submitFunction}>send</button>
+      <input disabled={state === 'submitting'} onChange={handleInput} type="text" id='city' />
     </>
   )
 }
